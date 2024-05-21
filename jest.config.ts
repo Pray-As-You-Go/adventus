@@ -1,5 +1,4 @@
 export default {
-  collectCoverageFrom: ["<rootDir>/src/**"],
   coverageReporters: ["html", "text"],
   coverageThreshold: {
     global: {
@@ -19,7 +18,7 @@ export default {
     "^.+\\.[tj]sx?$": [
       "ts-jest",
       {
-        tsconfig: "<rootDir>/tsconfig.json",
+        tsconfig: "tsconfig.json",
       },
     ],
   },
