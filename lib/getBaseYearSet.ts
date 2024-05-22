@@ -1,7 +1,7 @@
 import { differenceInDays, addDays } from "date-fns";
 
 import { getAdventStartDate } from "./getAdventStartDate";
-import { AdventusDate } from "../types";
+import { AdventusDate, Season } from "../types";
 
 export const getBaseYearSet = (year: number): Partial<AdventusDate>[] => {
   const adventStart = getAdventStartDate(year);
@@ -13,7 +13,7 @@ export const getBaseYearSet = (year: number): Partial<AdventusDate>[] => {
       if (idx === 0) {
         return {
           date: adventStart,
-          season: "advent",
+          season: Season.ADVENT,
           weekOfSeason: 1,
         };
       }

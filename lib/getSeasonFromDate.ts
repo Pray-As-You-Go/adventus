@@ -6,6 +6,7 @@ import {
   isSameDay,
   addDays,
 } from "date-fns";
+import { Season } from "../types";
 
 const isAfterOrSameDay = (date: Date, dateToCompare: Date) =>
   isAfter(date, dateToCompare) || isSameDay(date, dateToCompare);
@@ -26,29 +27,29 @@ export const getSeasonFromDate = (
   const PENTECOST = addDays(easterDate, 50);
 
   if (isBefore(date, CHRISTMAS) && isAfterOrSameDay(date, adventStart)) {
-    return "advent";
+    return Season.ADVENT;
   } else if (isAfterOrSameDay(date, CHRISTMAS) && isBefore(date, EPIPHANY)) {
-    return "christmas";
+    return Season.CHRISTMAS;
   } else if (
     isAfterOrSameDay(date, ASH_WEDNESDAY) &&
     isBefore(date, FIRST_SUNDAY_OF_LENT)
   ) {
-    return "ash-wednesday";
+    return Season.ASH_WEDNESDAY;
   } else if (
     isBefore(date, PALM_SUNDAY) &&
     isAfterOrSameDay(date, FIRST_SUNDAY_OF_LENT)
   ) {
-    return "lent";
+    return Season.LENT;
   } else if (
     isAfterOrSameDay(date, PALM_SUNDAY) &&
     isBefore(date, easterDate)
   ) {
-    return "holy-week";
+    return Season.HOLY_WEEK;
   } else if (
     isBeforeOrSameDay(date, PENTECOST) &&
     isAfterOrSameDay(date, easterDate)
   ) {
-    return "easter";
+    return Season.EASTER;
   }
-  return "ordinary";
+  return Season.ORDINARY;
 };
