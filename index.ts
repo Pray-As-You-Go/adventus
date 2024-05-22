@@ -10,3 +10,9 @@ export const today = (date: Date): AdventusDate => {
   const dateIdx = differenceInDays(date, firstDate.date);
   return churchYear[dateIdx];
 };
+
+(() => {
+  const [date] = process.argv.slice(2);
+  const day = today(new Date(date));
+  console.log(day);
+})();

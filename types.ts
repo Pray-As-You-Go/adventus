@@ -2,11 +2,13 @@ export type AdventusDate = {
   date: Date;
   season: string;
   weekOfSeason: number;
+  dayOfSeason: number;
+  feasts: Feast[];
 };
 
 export type Feast = {
-  name: string;
-  color?: string;
+  title: string;
+  subtitle?: string;
   rank:
     | "solemnity"
     | "memorial"
