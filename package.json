@@ -1,11 +1,12 @@
 {
   "name": "adventus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get liturgical information about a given day.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "test": "jest",
+    "prebuild": "rm -rf dist",
     "build": "node build.js",
     "postbuild": "tsc -d",
     "cli": "node dist/index.js",

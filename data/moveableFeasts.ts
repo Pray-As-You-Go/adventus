@@ -11,16 +11,12 @@ import {
   subWeeks,
 } from "date-fns";
 import { getAdventStartDate } from "../lib/getAdventStartDate";
+import { formatDateShort } from "../lib/formatDateShort";
 
 type MoveableFeast = {
   feast: Feast;
   getDate: (adventStartDate: Date, easterDate: Date) => Date;
 };
-
-const formatter = new Intl.DateTimeFormat("en-UK", {
-  month: "short",
-  day: "numeric",
-});
 
 export const getMoveableFeasts = (adventStartDate: Date, easterDate: Date) =>
   [
@@ -139,6 +135,6 @@ export const getMoveableFeasts = (adventStartDate: Date, easterDate: Date) =>
     },
   ].reduce((acc, { feast, getDate }) => {
     const date = getDate(adventStartDate, easterDate);
-    acc[formatter.format(date)] = [feast];
+    acc[formatDateShort(date)] = [feast];
     return acc;
   }, {});

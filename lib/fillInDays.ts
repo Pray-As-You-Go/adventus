@@ -3,11 +3,7 @@ import { getEasterDate } from "./getEasterDate";
 import { getSeasonFromDate } from "./getSeasonFromDate";
 import { FIXED_FEASTS } from "../data/fixedFeasts";
 import { getMoveableFeasts } from "../data/moveableFeasts";
-
-const format = new Intl.DateTimeFormat("en-UK", {
-  month: "short",
-  day: "numeric",
-});
+import { formatDateShort } from "./formatDateShort";
 
 export const fillInDays = (dates: Partial<AdventusDate>[]): AdventusDate[] => {
   const easterDate = getEasterDate(dates[dates.length - 1].date.getFullYear());
@@ -31,10 +27,10 @@ export const fillInDays = (dates: Partial<AdventusDate>[]): AdventusDate[] => {
       datesInSeason.filter(({ date }) => date.getDay() === 0).length + 1;
 
     const todaysFixedFeasts =
-      FIXED_FEASTS[format.format(extendedDate.date)] || [];
+      FIXED_FEASTS[formatDateShort(extendedDate.date)] || [];
     const moveablefeasts = getMoveableFeasts(dates[0].date, easterDate);
     const todaysMoveableFeasts =
-      moveablefeasts[format.format(extendedDate.date)] || [];
+      moveablefeasts[formatDateShort(extendedDate.date)] || [];
     extendedDate.feasts = [...todaysFixedFeasts, ...todaysMoveableFeasts];
 
     acc.push(extendedDate);

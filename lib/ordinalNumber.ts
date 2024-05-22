@@ -1,11 +1,12 @@
-const intl = new Intl.PluralRules("en-UK", { type: "ordinal" });
-
-const SUFFIXES = new Map([
-  ["one", "st"],
-  ["two", "nd"],
-  ["few", "rd"],
-  ["other", "th"],
-]);
+const getOrdinalSuffix = (value: number) => {
+  const tens = value % 100;
+  if (tens >= 10 && tens <= 20) return "th";
+  const ones = tens % 10;
+  if (ones === 1) return "st";
+  if (ones === 2) return "nd";
+  if (ones === 3) return "rd";
+  return "th";
+};
 
 const ONES = new Map([
   [1, "first"],
@@ -69,10 +70,8 @@ const getTextualValue = (value: number) => {
 };
 
 export const formatOrdinalNumber = (value: number) => {
-  const rule = intl.select(value);
-
   return {
     textual: getTextualValue(value),
-    numeric: `${value}${SUFFIXES.get(rule)}`,
+    numeric: `${value}${getOrdinalSuffix(value)}`,
   };
 };

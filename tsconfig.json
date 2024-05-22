@@ -3,6 +3,7 @@
     "compilerOptions": {
         "rootDir": ".",
         "sourceMap": true,
+        "declaration": false,
         "declarationDir": "./dist",
         "moduleResolution": "node",
         "emitDeclarationOnly": true,
