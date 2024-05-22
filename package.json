@@ -1,6 +1,6 @@
 {
   "name": "adventus",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get liturgical information about a given day.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
